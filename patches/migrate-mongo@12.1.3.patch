@@ -1,0 +1,36 @@
+diff --git a/lib/env/config.js b/lib/env/config.js
+index dda21d8..0b3ebbb 100644
+--- a/lib/env/config.js
++++ b/lib/env/config.js
+@@ -6,7 +6,7 @@ const moduleLoader = require('../utils/module-loader');
+ 
+ const DEFAULT_CONFIG_FILE_NAME = "migrate-mongo-config.js";
+ 
+-let customConfigContent = null;
++let customConfigContent = global.config || null;
+ 
+ function getConfigPath() {
+   const fileOptionValue = _get(global.options, "file");
+diff --git a/lib/env/migrationsDir.js b/lib/env/migrationsDir.js
+index 906234c..b66917c 100644
+--- a/lib/env/migrationsDir.js
++++ b/lib/env/migrationsDir.js
+@@ -98,16 +98,8 @@ module.exports = {
+     const migrationsDir = await resolveMigrationsDirPath();
+     const migrationPath = path.join(migrationsDir, fileName);
+ 
+-    try {
+-      const result = moduleLoader.require(migrationPath);
+-      return getModuleExports(result);
+-    } catch (e) {
+-      if (e.code === 'ERR_REQUIRE_ESM') {
+-        const loadedImport = moduleLoader.import(url.pathToFileURL(migrationPath));
+-        return getModuleExports(loadedImport);
+-      }
+-      throw e;
+-    }
++    const loadedImport = await moduleLoader.import(url.pathToFileURL(migrationPath));
++    return getModuleExports(loadedImport);
+   },
+ 
+   async loadFileHash(fileName) {

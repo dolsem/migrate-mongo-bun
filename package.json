@@ -1,0 +1,20 @@
+{
+  "name": "migrate-mongo-ts",
+  "version": "0.0.1",
+  "type": "module",
+  "module": "src/index.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/migrate-mongo": "^10.0.5",
+    "mongodb": "^6.13.0"
+  },
+  "peerDependencies": {
+    "mongodb": "^6.13.0"
+  },
+  "dependencies": {
+    "migrate-mongo": "12.1.3"
+  },
+  "patchedDependencies": {
+    "migrate-mongo@12.1.3": "patches/migrate-mongo@12.1.3.patch"
+  }
+}
