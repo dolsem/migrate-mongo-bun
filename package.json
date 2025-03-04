@@ -1,8 +1,12 @@
 {
-  "name": "migrate-mongo-ts",
-  "version": "0.0.1",
+  "name": "migrate-mongo-bun",
+  "version": "0.1.1",
   "type": "module",
   "module": "src/index.ts",
+  "types": "src/index.ts",
+  "bin": {
+    "migrate-mongo-bun": "bin/migrate-mongo-bun.js"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/migrate-mongo": "^10.0.5",
