@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 import path from 'path';
 
 let configFilename = 'migrate-mongo-config.ts';
